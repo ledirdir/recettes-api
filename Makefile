@@ -1,9 +1,22 @@
+FIG=docker-compose
+HAS_DOCKER:=$(shell command -v $(FIG) 2> /dev/null)
+
+ifdef HAS_DOCKER
+	EXEC=$(FIG) exec app
+	EXEC_DB=$(FIG) exec EXEC_DB
+else
+	EXEC=
+	EXEC_DB=
+endif
+
+CONSOLE=php bin/
+
 check:
-	composer check
+	$(EXEC) composer check
 csfix:
-	composer fix
+	$(EXEC) composer fix
 install:
-	composer install
+	$(EXEC) composer install
 
 start:
 	docker-compose up
