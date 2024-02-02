@@ -9,7 +9,7 @@ else
 	EXEC_DB=
 endif
 
-CONSOLE=php bin/
+CONSOLE=php bin/conole
 
 check:
 	$(EXEC) composer check
@@ -17,6 +17,15 @@ csfix:
 	$(EXEC) composer fix
 install:
 	$(EXEC) composer install
+entity:
+	$(EXEC) $(CONSOLE) make:entity
+
+migration:
+	$(EXEC) $(CONSOLE) make:entity
+
+migrate:
+	$(EXEC) $(CONSOLE) doctrine:migation:migrate -n
+
 
 start:
 	docker-compose up
